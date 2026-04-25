@@ -1,0 +1,10 @@
+UPDATE recipe SET cover='https://sky-tae-out.oss-cn-beijing.aliyuncs.com/recipe-covers/201_rose_tea.jpg' WHERE id=201;
+UPDATE recipe SET cover='https://sky-tae-out.oss-cn-beijing.aliyuncs.com/recipe-covers/202_jicai_liver_soup.jpg' WHERE id=202;
+UPDATE recipe SET cover='https://sky-tae-out.oss-cn-beijing.aliyuncs.com/recipe-covers/203_lily_lotus_soup.jpg' WHERE id=203;
+UPDATE recipe SET cover='https://sky-tae-out.oss-cn-beijing.aliyuncs.com/recipe-covers/204_shanyao_yimi_porridge.jpg' WHERE id=204;
+UPDATE recipe SET cover='https://sky-tae-out.oss-cn-beijing.aliyuncs.com/recipe-covers/205_danggui_huangqi_chicken.jpg' WHERE id=205;
+UPDATE recipe SET cover='https://sky-tae-out.oss-cn-beijing.aliyuncs.com/recipe-covers/206_baihe_chenpi_tea.jpg' WHERE id=206;
+UPDATE recipe SET cover='https://sky-tae-out.oss-cn-beijing.aliyuncs.com/recipe-covers/207_snow_pear_soup.jpg' WHERE id=207;
+UPDATE recipe SET cover='https://sky-tae-out.oss-cn-beijing.aliyuncs.com/recipe-covers/208_runqiu_soup.jpg' WHERE id=208;
+UPDATE recipe SET cover='https://sky-tae-out.oss-cn-beijing.aliyuncs.com/recipe-covers/209_yangrou_soup.jpg' WHERE id=209;
+UPDATE recipe SET cover='https://sky-tae-out.oss-cn-beijing.aliyuncs.com/recipe-covers/210_guiyuan_hongzao_drink.jpg' WHERE id=210;

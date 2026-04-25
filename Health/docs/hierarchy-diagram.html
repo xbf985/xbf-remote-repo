@@ -1,0 +1,210 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"/>
+<title>图 4-1 系统总体层次图</title>
+<style>
+@page{size:A4 portrait;margin:5mm;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:"Microsoft YaHei","PingFang SC",sans-serif;background:#fff;color:#1e293b;width:210mm;min-height:295mm;margin:0 auto;padding:5mm 6mm;font-size:11px;line-height:1.5;}
+h1{text-align:center;font-size:20px;font-weight:700;color:#1a3a5c;margin-bottom:4px;}
+.sub{text-align:center;font-size:10px;color:#64748b;margin-bottom:8px;}
+/* main layout */
+.main{display:flex;gap:0;align-items:stretch;min-height:275mm;}
+/* arrow triangle helper */
+.arr{display:inline-block;width:0;height:0;border:5px solid transparent;border-left:7px solid #94a3b8;vertical-align:middle;}
+/* root node */
+.root-col{display:flex;flex-direction:column;justify-content:center;align-items:center;min-width:90px;position:relative;padding-right:8px;}
+.root-box{background:linear-gradient(135deg,#1e3a5f,#2d5a8e);color:#fff;font-size:15px;font-weight:700;padding:14px 10px;border-radius:10px;text-align:center;line-height:1.5;box-shadow:0 2px 8px rgba(30,58,95,.3);writing-mode:vertical-lr;letter-spacing:3px;}
+.root-icon{font-size:26px;margin-bottom:6px;writing-mode:horizontal-tb;}
+.right-part{flex:1;display:flex;flex-direction:column;gap:0;padding-left:30px;position:relative;}
+.right-part::before{content:'';position:absolute;left:10px;top:0;bottom:0;border-left:2px solid #94a3b8;}
+/* subsystem section */
+.ss-section{display:flex;flex:1;border-bottom:1px solid #e2e8f0;padding:6px 0;position:relative;}
+.ss-section:last-child{border-bottom:none;}
+.ss-section::before{content:'';position:absolute;left:-20px;top:50%;width:16px;border-top:2px solid #94a3b8;}
+.ss-section::after{content:'';position:absolute;left:-5px;top:50%;transform:translateY(-50%);border:6px solid transparent;border-left:8px solid #60a5fa;}
+.ss-section.sec-biz::after{border-left-color:#34d399;}
+.ss-section.sec-algo::after{border-left-color:#a78bfa;}
+.ss-section.sec-data::after{border-left-color:#fbbf24;}
+/* subsystem label */
+.ss-label{min-width:110px;max-width:110px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:8px 6px;position:relative;margin-right:16px;border-radius:8px;border:2px solid #cbd5e1;}
+/* vertical spine for modules */
+.ss-label::after{content:'';position:absolute;right:-9px;top:8%;bottom:8%;border-left:1.5px solid #cbd5e1;}
+.ss-label .ss-num{font-size:14px;font-weight:700;margin-bottom:2px;}
+.ss-label .ss-name{font-size:12px;font-weight:700;margin-bottom:2px;}
+.ss-label .ss-sub{font-size:9px;color:#64748b;}
+.ss-label .ss-tech{font-size:9.5px;color:#fff;background:#546e7a;border-radius:4px;padding:2px 7px;margin-top:4px;display:inline-block;font-weight:600;letter-spacing:.3px;}
+.ss-label.front{background:rgba(219,234,254,.3);border-color:#60a5fa;} .ss-label.front .ss-num,.ss-label.front .ss-name{color:#1d4ed8;}
+.ss-label.biz{background:rgba(209,250,229,.3);border-color:#34d399;} .ss-label.biz .ss-num,.ss-label.biz .ss-name{color:#047857;}
+.ss-label.algo{background:rgba(237,233,254,.3);border-color:#a78bfa;} .ss-label.algo .ss-num,.ss-label.algo .ss-name{color:#6d28d9;}
+.ss-label.data{background:rgba(254,249,195,.3);border-color:#fbbf24;} .ss-label.data .ss-num,.ss-label.data .ss-name{color:#b45309;}
+/* module list */
+.mod-list{flex:1;display:flex;flex-direction:column;padding-left:8px;justify-content:space-evenly;}
+/* single module row */
+.mod-row{display:grid;grid-template-columns:200px 1fr 160px;gap:6px;align-items:center;padding:4px 0;border-bottom:1px dotted #e2e8f0;position:relative;}
+.mod-row:last-child{border-bottom:none;}
+.mod-row::before{content:'';position:absolute;left:-16px;top:50%;width:12px;border-top:1.5px solid #cbd5e1;}
+.mod-row::after{content:'';position:absolute;left:-5px;top:50%;transform:translateY(-50%);border:4px solid transparent;border-left:6px solid #cbd5e1;}
+/* module info */
+.mod-info{display:flex;align-items:center;gap:5px;}
+.mod-info .mi{font-size:13px;}
+.mod-info .mn{font-weight:700;font-size:11px;color:#1a3a5c;}
+.mod-info .mt{font-size:9px;color:#fff;background:#546e7a;border-radius:4px;padding:2px 6px;font-weight:600;}
+/* data processing */
+.mod-dp{font-size:8.5px;color:#78350f;background:#fef9c3;border:1px solid #fde68a;border-radius:4px;padding:2px 5px;line-height:1.3;}
+.mod-dp b{color:#92400e;}
+/* sub-modules */
+.mod-subs{display:flex;flex-wrap:wrap;gap:3px;}
+.mod-subs span{font-size:9px;font-weight:600;padding:2px 6px;border-radius:4px;border:1px solid #93c5fd;background:#eff6ff;color:#1e40af;white-space:nowrap;}
+/* legend */
+.legend{display:flex;justify-content:center;margin-top:6px;flex-wrap:wrap;gap:12px;font-size:10px;color:#64748b;padding-top:4px;}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;border:1.5px solid;vertical-align:middle;margin-right:3px;}
+</style></head><body>
+<h1>图 4-1　系统·导引小程序系统总体层次图</h1>
+<div class="sub">系统 → 子系统 → 功能模块 → 子模块（标注技术栈；黄色标注数据处理流程）</div>
+
+<div class="main">
+<!-- Root -->
+<div class="root-col">
+<div class="root-box"><div class="root-icon">🏛</div>系统·导引<br/>小程序系统</div>
+</div>
+
+<div class="right-part">
+<!-- ===== 1. 前端子系统 ===== -->
+<div class="ss-section">
+<div class="ss-label front">
+<div class="ss-num">1.</div><div class="ss-name">前端子系统</div><div class="ss-sub">（用户交互层）</div>
+<div class="ss-tech">UniApp · Vue 3<br/>SCSS</div>
+</div>
+<div class="mod-list">
+<div class="mod-row">
+<div class="mod-info"><span class="mi">🏠</span><span class="mn">1.1 首页与内容展示</span><span class="mt">uni.request</span></div>
+<div class="mod-dp"><b>数据：</b>调聚合接口→解析→卡片渲染</div>
+<div class="mod-subs"><span>卡片展示</span><span>列表/宫格</span><span>内容详情</span></div>
+</div>
+<div class="mod-row">
+<div class="mod-info"><span class="mi">🎯</span><span class="mn">1.2 练功房训练</span><span class="mt">Camera · WebSocket</span></div>
+<div class="mod-dp"><b>数据：</b>帧→base64→并发检测→评分回显→提交</div>
+<div class="mod-subs"><span>训练配置</span><span>实时检测</span><span>帧采集</span><span>结果结算</span></div>
+</div>
+<div class="mod-row">
+<div class="mod-info"><span class="mi">💬</span><span class="mn">1.3 师父在线问答</span><span class="mt">HTTPS · 流式</span></div>
+<div class="mod-dp"><b>数据：</b>问题+标签→prompt→LLM→流式渲染</div>
+<div class="mod-subs"><span>AI对话</span><span>流式输出</span><span>对话记录</span></div>
+</div>
+<div class="mod-row">
+<div class="mod-info"><span class="mi">👥</span><span class="mn">1.4 社区互动</span><span class="mt">uploadFile · 瀑布流</span></div>
+<div class="mod-dp"><b>数据：</b>帖子/媒体→上传→存储→列表/详情</div>
+<div class="mod-subs"><span>帖子浏览</span><span>评论/点赞</span><span>媒体上传</span></div>
+</div>
+<div class="mod-row">
+<div class="mod-info"><span class="mi">👤</span><span class="mn">1.5 个人中心与历史</span><span class="mt">聚合 · Tab</span></div>
+<div class="mod-dp"><b>数据：</b>用户ID→聚合→展示记录/收藏</div>
+<div class="mod-subs"><span>收藏管理</span><span>设置中心</span><span>浏览历史</span></div>
+</div>
+<div class="mod-row">
+<div class="mod-info"><span class="mi">🎨</span><span class="mn">1.6 3D疗愈/文化/食疗</span><span class="mt">Three.js · ECharts</span></div>
+<div class="mod-dp"><b>数据：</b>模型/标签→渲染→交互统计</div>
+<div class="mod-subs"><span>3D场景</span><span>穴位经络</span><span>文化科普</span><span>食疗方案</span></div>
+</div>
+</div></div>
+
+<!-- ===== 2. 业务服务子系统 ===== -->
+<div class="ss-section sec-biz">
+<div class="ss-label biz">
+<div class="ss-num">2.</div><div class="ss-name">业务服务子<br/>系统</div><div class="ss-sub">（业务逻辑层）</div>
+<div class="ss-tech">Spring Boot<br/>MyBatis · JWT</div>
+</div>
+<div class="mod-list">
+<div class="mod-row">
+<div class="mod-info"><span class="mi">🔐</span><span class="mn">2.1 用户与鉴权</span><span class="mt">JwtInterceptor</span></div>
+<div class="mod-dp"><b>数据：</b>账号→校验→Mapper→JWT→拦截器→ThreadLocal</div>
+<div class="mod-subs"><span>注册/登录</span><span>参数校验</span><span>Token鉴权</span><span>拦截器解析</span></div>
+</div>
+<div class="mod-row">
+<div class="mod-info"><span class="mi">📊</span><span class="mn">2.2 首页推荐</span><span class="mt">HomeController</span></div>
+<div class="mod-dp"><b>数据：</b>ID→多表查询→VO组装→聚合返回</div>
+<div class="mod-subs"><span>内容聚合</span><span>文章/功法/课程</span><span>基于标签/时令</span></div>
+</div>
+<div class="mod-row">
+<div class="mod-info"><span class="mi">🎯</span><span class="mn">2.3 训练会话与记录</span><span class="mt">TrainingRoomCtrl</span></div>
+<div class="mod-dp"><b>数据：</b>创建会话→帧/结果入库→统计分析</div>
+<div class="mod-subs"><span>计划匹配</span><span>会话创建</span><span>记录查看</span><span>历史会话/统计</span></div>
+</div>
+<div class="mod-row">
+<div class="mod-info"><span class="mi">💬</span><span class="mn">2.4 社区与互动服务</span><span class="mt">CommunityCtrl</span></div>
+<div class="mod-dp"><b>数据：</b>帖子/评论→CRUD→通知/聚合</div>
+<div class="mod-subs"><span>评论/点赞</span><span>计数聚合</span><span>关注关系</span><span>增删改查</span></div>
+</div>
+<div class="mod-row">
+<div class="mod-info"><span class="mi">❤️</span><span class="mn">2.5 收藏/点赞/历史</span><span class="mt">content_type 复用</span></div>
+<div class="mod-dp"><b>数据：</b>用户ID+type→记录→聚合展示</div>
+<div class="mod-subs"><span>历史记录</span><span>浏览/操作</span><span>按类型聚合</span></div>
+</div>
+<div class="mod-row">
+<div class="mod-info"><span class="mi">☁️</span><span class="mn">2.6 文件上传与资源管理</span><span class="mt">OSS SDK</span></div>
+<div class="mod-dp"><b>数据：</b>文件→分片上传→OSS→返回URL</div>
+<div class="mod-subs"><span>上传接口</span><span>资源管理</span><span>URL关联</span></div>
+</div>
+</div></div>
+
+<!-- ===== 3. 算法服务子系统 ===== -->
+<div class="ss-section sec-algo">
+<div class="ss-label algo">
+<div class="ss-num">3.</div><div class="ss-name">算法服务子系<br/>统</div><div class="ss-sub">（AI 能力层）</div>
+<div class="ss-tech">Python · Flask<br/>FastAPI</div>
+</div>
+<div class="mod-list">
+<div class="mod-row">
+<div class="mod-info"><span class="mi">🏃</span><span class="mn">3.1 姿态检测服务</span><span class="mt">PoseLandmarker Lite</span></div>
+<div class="mod-dp"><b>数据：</b>图片/视频→检测→关键点/角度/评分</div>
+<div class="mod-subs"><span>关键点提取</span><span>33点/角度评分</span><span>标准动作对比</span></div>
+</div>
+<div class="mod-row">
+<div class="mod-info"><span class="mi">🫁</span><span class="mn">3.2 呼吸检测服务</span><span class="mt">EfficientPhys · rPPG</span></div>
+<div class="mod-dp"><b>数据：</b>视频→rPPG→呼吸频率/深度/节律评价</div>
+<div class="mod-subs"><span>ROI 提取</span><span>人脸/胸腹</span><span>呼吸参数</span><span>深度/节律</span></div>
+</div>
+<div class="mod-row">
+<div class="mod-info"><span class="mi">🤖</span><span class="mn">3.3 智能问答</span><span class="mt">LLM API</span></div>
+<div class="mod-dp"><b>数据：</b>问题+上下文→提示工程→LLM→回答</div>
+<div class="mod-subs"><span>上下文拼装</span><span>知识标签</span><span>问答生成</span><span>流式/异步</span></div>
+</div>
+</div></div>
+
+<!-- ===== 4. 数据与资源子系统 ===== -->
+<div class="ss-section sec-data">
+<div class="ss-label data">
+<div class="ss-num">4.</div><div class="ss-name">数据与资源子<br/>系统</div><div class="ss-sub">（数据与资源层）</div>
+<div class="ss-tech">MySQL · OSS<br/>本地文件存储</div>
+</div>
+<div class="mod-list">
+<div class="mod-row">
+<div class="mod-info"><span class="mi">🗃️</span><span class="mn">4.1 MySQL 结构化数据</span><span class="mt">MySQL 8.4 / InnoDB</span></div>
+<div class="mod-dp"><b>数据：</b>业务数据→实体→事务存储</div>
+<div class="mod-subs"><span>账号/角色/收藏</span><span>帖子/评论</span><span>训练/统计</span></div>
+</div>
+<div class="mod-row">
+<div class="mod-info"><span class="mi">☁️</span><span class="mn">4.2 阿里云 OSS 媒体资源</span><span class="mt">OSS SDK</span></div>
+<div class="mod-dp"><b>数据：</b>文件/图片/视频→OSS→URL返回</div>
+<div class="mod-subs"><span>图片/视频/音频</span><span>训练录像</span><span>URL/关联</span></div>
+</div>
+<div class="mod-row">
+<div class="mod-info"><span class="mi">📚</span><span class="mn">4.3 标准动作模板与时间轴</span><span class="mt">本地文件存储</span></div>
+<div class="mod-dp"><b>数据：</b>动作模板→关键帧→文件存储→JSON加载</div>
+<div class="mod-subs"><span>动作模板</span><span>时间轴JSON</span></div>
+</div>
+<div class="mod-row">
+<div class="mod-info"><span class="mi">🧠</span><span class="mn">4.4 知识资料与提示词模板</span><span class="mt">知识库/Prompt</span></div>
+<div class="mod-dp"><b>数据：</b>课程/模板/模型→本地存储→调取/食疗</div>
+<div class="mod-subs"><span>提示词模板</span><span>模型权重</span></div>
+</div>
+</div></div>
+</div></div>
+
+<!-- Legend -->
+<div class="legend">
+<span><i style="background:#eff6ff;border-color:#60a5fa;"></i>前端子系统</span>
+<span><i style="background:#ecfdf5;border-color:#34d399;"></i>业务服务子系统</span>
+<span><i style="background:#f5f3ff;border-color:#a78bfa;"></i>算法服务子系统</span>
+<span><i style="background:#fffbeb;border-color:#fbbf24;"></i>数据与资源子系统</span>
+</div>
+</body></html>

@@ -1,0 +1,13 @@
+.git
+.idea
+.vscode
+target
+.m2
+uploads
+temp_frames
+temp_videos
+hs_err_pid*.log
+replay_pid*.log
+tmp-upload.txt
+docs
+scripts

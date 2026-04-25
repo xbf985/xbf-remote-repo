@@ -1,0 +1,24 @@
+spring:
+  datasource:
+    url: ${DB_URL:jdbc:mysql://localhost:3306/qigong?serverTimezone=UTC&characterEncoding=utf8&useSSL=false}
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:@Xbf028430}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  servlet:
+    multipart:
+      max-file-size: 200MB
+      max-request-size: 200MB
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.health.qigong.pojo
+
+app:
+  storage-type: ${APP_STORAGE_TYPE:local}
+  upload-dir: ${user.dir}/uploads
+  oss:
+    endpoint: ${OSS_ENDPOINT:https://oss-cn-beijing.aliyuncs.com}
+    bucket: ${OSS_BUCKET:sky-tae-out}
+    public-base-url: ${OSS_PUBLIC_BASE_URL:https://sky-tae-out.oss-cn-beijing.aliyuncs.com}
+    access-key-id: ${OSS_ACCESS_KEY_ID:}
+    access-key-secret: ${OSS_ACCESS_KEY_SECRET:}

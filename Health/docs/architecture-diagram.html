@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<title>图 3-1 系统总体架构图</title>
+<style>
+@page{size:A4 portrait;margin:5mm;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:"Microsoft YaHei","PingFang SC",sans-serif;width:210mm;min-height:295mm;margin:0 auto;padding:5mm 6mm;background:#fff;color:#1e293b;font-size:11px;line-height:1.5;display:flex;flex-direction:column;}
+h1{text-align:center;font-size:20px;font-weight:700;color:#16385b;margin-bottom:6px;}
+/* entry */
+.entry{text-align:center;margin-bottom:4px;}
+.entry-box{display:inline-block;background:linear-gradient(135deg,#17365b,#2b5a8d);color:#fff;font-size:16px;font-weight:700;padding:14px 32px;border-radius:26px;line-height:1.4;box-shadow:0 3px 10px rgba(23,54,91,.18);}
+.entry-box small{display:block;font-size:10.5px;font-weight:400;opacity:.85;margin-top:3px;}
+.arrow-down{text-align:center;font-size:24px;color:#94a3b8;margin:3px 0 5px;}
+/* protocol bar */
+.proto-bar{display:flex;justify-content:center;align-items:center;gap:8px;margin:4px 0;flex-wrap:wrap;}
+.proto{font-size:10px;font-weight:600;color:#475569;padding:3px 10px;border:1px solid #cbd5e1;border-radius:10px;background:#f8fafc;}
+.proto-arrow{font-size:18px;color:#94a3b8;display:block;text-align:center;line-height:1;margin:2px 0;}
+/* layer */
+.layer{border:2px solid #cbd5e1;border-radius:12px;padding:10px 12px 12px;margin-bottom:5px;position:relative;}
+.layer-head{display:flex;flex-direction:column;align-items:center;margin-bottom:8px;gap:5px;}
+.layer-title{font-size:15px;font-weight:700;padding:3px 14px;border-radius:6px;color:#fff;white-space:nowrap;}
+.layer .tech-row{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;}
+.layer .tech{font-size:10px;font-weight:600;padding:3px 9px;border-radius:10px;border:1px solid #d1dbe6;background:#fff;color:#334155;white-space:nowrap;}
+/* front layer */
+.layer.front{border-color:#60a5fa;background:linear-gradient(180deg,#eff6ff,#f8fbff);}
+.layer.front .layer-title{background:linear-gradient(90deg,#2563eb,#3b82f6);}
+/* biz layer */
+.layer.biz{border-color:#34d399;background:linear-gradient(180deg,#ecfdf5,#f5fef9);}
+.layer.biz .layer-title{background:linear-gradient(90deg,#059669,#10b981);}
+/* algo layer */
+.layer.algo{border-color:#a78bfa;background:linear-gradient(180deg,#f5f3ff,#faf8ff);}
+.layer.algo .layer-title{background:linear-gradient(90deg,#7c3aed,#8b5cf6);}
+/* data layer */
+.layer.data{border-color:#f59e0b;background:linear-gradient(180deg,#fffbeb,#fefdf5);}
+.layer.data .layer-title{background:linear-gradient(90deg,#d97706,#f59e0b);}
+/* module cards grid */
+.mod-grid{display:grid;gap:7px;}
+.mod-grid.g6{grid-template-columns:repeat(6,1fr);}
+.mod-grid.g3{grid-template-columns:repeat(3,1fr);}
+/* module card */
+.card{border:1.5px solid #d9e3ef;border-radius:8px;background:rgba(255,255,255,.92);padding:8px 9px;}
+.card-title{font-size:12px;font-weight:700;color:#16385b;margin-bottom:4px;}
+.card-sub{font-size:9.5px;color:#64748b;line-height:1.4;margin-bottom:4px;}
+.tag-row{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px;}
+.tag{font-size:9px;padding:2px 6px;border-radius:10px;border:1px solid #d6e2ee;background:#f1f5f9;color:#475569;white-space:nowrap;}
+.tag.warn{background:#fef9c3;border-color:#fde68a;color:#92400e;font-weight:600;}
+.tag.purple{background:#ede9fe;border-color:#c4b5fd;color:#5b21b6;font-weight:600;}
+/* process box */
+.proc{font-size:9px;color:#78350f;background:#fef9c3;border:1px solid #fde68a;border-radius:4px;padding:3px 6px;margin-top:4px;line-height:1.35;}
+.proc b{color:#92400e;}
+/* card icon */
+.card-title .ic{font-size:14px;margin-right:3px;vertical-align:middle;}
+/* sub-module pills inside card */
+.sub-mods{display:flex;flex-wrap:wrap;gap:3px;margin-top:4px;padding:4px 5px;background:rgba(241,245,249,.7);border-radius:4px;border:1px solid #e2e8f0;}
+.sub-mods span{font-size:8.5px;font-weight:600;padding:2px 5px;border-radius:3px;background:#fff;border:1px solid #cbd5e1;color:#334155;}
+.sub-mods .arr{color:#94a3b8;font-size:9px;padding:0 1px;}
+/* step flow (internal processing) */
+.step{font-size:9px;color:#475569;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:4px;padding:3px 6px;margin-top:4px;line-height:1.35;}
+.step b{color:#166534;}
+/* legend */
+.legend{display:flex;gap:14px;justify-content:center;margin-top:8px;flex-wrap:wrap;font-size:10px;color:#64748b;}
+.legend i{display:inline-block;width:13px;height:13px;border-radius:3px;border:1.5px solid;vertical-align:middle;margin-right:3px;}
+</style>
+</head>
+<body>
+<h1>图 3-1　炁衡·导引小程序系统总体架构图</h1>
+
+<!-- 入口 -->
+<div class="entry">
+<div class="entry-box">用户 / 微信小程序入口<small>微信扫码或搜索访问 · 无需安装</small></div>
+</div>
+<div class="arrow-down">↓</div>
+
+<!-- ===== 第一层：前端表现层 ===== -->
+<div class="layer front">
+<div class="layer-head">
+<div class="layer-title">第一层 · 前端表现层</div>
+<div class="tech-row"><span class="tech">UniApp + Vue 3</span><span class="tech">SCSS</span><span class="tech">three-platformize</span><span class="tech">uni.request / WebSocket</span></div>
+</div>
+<div class="mod-grid g6">
+<div class="card">
+<div class="card-title"><span class="ic">📊</span>首页与内容展示</div>
+<div class="card-sub">课程推荐 · 打卡统计 · 食疗入口 · 功法导航</div>
+<div class="tag-row"><span class="tag">uni.request 聚合</span><span class="tag">Vue 组件渲染</span></div>
+</div>
+<div class="card">
+<div class="card-title"><span class="ic">🎯</span>练功房</div>
+<div class="card-sub">训练设定 · 实时检测 · 摄像头采帧 · 结果结算</div>
+<div class="tag-row"><span class="tag">Camera API</span><span class="tag">WebSocket</span><span class="tag">Canvas 回显</span></div>
+</div>
+<div class="card">
+<div class="card-title"><span class="ic">💬</span>师父在线问答</div>
+<div class="card-sub">话题选择 · 训练建议 · 上下文追溯 · 流式输出</div>
+<div class="tag-row"><span class="tag">HTTPS 调用</span><span class="tag">SSE 流式渲染</span></div>
+</div>
+<div class="card">
+<div class="card-title"><span class="ic">👥</span>社区互动</div>
+<div class="card-sub">帖子发布 · 评论点赞 · 关注 · 内容浏览</div>
+<div class="tag-row"><span class="tag">瀑布流</span><span class="tag">uploadFile</span><span class="tag">OSS 存储</span></div>
+</div>
+<div class="card">
+<div class="card-title"><span class="ic">👤</span>个人中心</div>
+<div class="card-sub">用户信息 · 训练记录 · 收藏历史 · 成长回顾</div>
+<div class="tag-row"><span class="tag">JWT 鉴权</span><span class="tag">Tab 分页</span></div>
+</div>
+<div class="card">
+<div class="card-title"><span class="ic">🎨</span>3D 疗愈 / 文化</div>
+<div class="card-sub">3D 人体模型 · 穴位经络 · 文化科普 · 食疗推荐</div>
+<div class="tag-row"><span class="tag">three-platformize</span><span class="tag">ECharts</span></div>
+</div>
+</div>
+</div>
+
+<!-- 协议 -->
+<div class="proto-arrow">↓</div>
+<div class="proto-bar">
+<span class="proto">HTTP RESTful API</span>
+<span class="proto">HTTP / WebSocket</span>
+<span class="proto">HTTPS (外部 AI)</span>
+</div>
+<div class="proto-arrow">↓</div>
+
+<!-- ===== 第二层：业务服务层 ===== -->
+<div class="layer biz">
+<div class="layer-head">
+<div class="layer-title">第二层 · 业务服务层</div>
+<div class="tech-row"><span class="tech">Spring Boot 4.0</span><span class="tech">MyBatis</span><span class="tech">JWT 鉴权</span><span class="tech">Alibaba Cloud OSS SDK</span></div>
+</div>
+<div class="mod-grid g3">
+<div class="card">
+<div class="card-title"><span class="ic">🔐</span>账户与内容服务</div>
+<div class="card-sub">注册/登录 · JWT签发校验 · 首页聚合 · 社区CRUD</div>
+<div class="tag-row"><span class="tag">参数校验</span><span class="tag">Mapper查询</span><span class="tag">ThreadLocal</span></div>
+</div>
+<div class="card">
+<div class="card-title"><span class="ic">🎯</span>训练与互动服务</div>
+<div class="card-sub">训练会话管理 · 计划匹配 · 记录查询 · 总结生成</div>
+<div class="tag-row"><span class="tag warn">plan匹配</span><span class="tag warn">session管理</span><span class="tag">advice生成</span></div>
+</div>
+<div class="card">
+<div class="card-title"><span class="ic">☁️</span>资源管理服务</div>
+<div class="card-sub">文件上传(OSS) · URI生成与关联 · 媒体资源CRUD</div>
+<div class="tag-row"><span class="tag">UUID命名</span><span class="tag">OSS上传</span><span class="tag">公网URL</span></div>
+</div>
+</div>
+</div>
+
+<!-- 协议 -->
+<div class="proto-arrow">↓</div>
+<div class="proto-bar">
+<span class="proto">HTTP POST (图片/视频等)</span>
+<span class="proto">WebSocket (实时流)</span>
+<span class="proto">HTTPS API 调用</span>
+</div>
+<div class="proto-arrow">↓</div>
+
+<!-- ===== 第三层：算法服务层 ===== -->
+<div class="layer algo">
+<div class="layer-head">
+<div class="layer-title">第三层 · 算法服务层</div>
+</div>
+<div class="mod-grid g3">
+<div class="card">
+<div class="card-title"><span class="ic">🏃</span>Flask 姿态分析 <span class="tech">Python·Flask</span></div>
+<div class="tag-row"><span class="tag">PoseLandmarker</span><span class="tag">MoveNet</span><span class="tag warn">MLP分类</span><span class="tag">DTW匹配</span></div>
+<div class="proc"><b>输入：</b>视频帧 → <b>输出：</b>姿态标签·评分·偏差提示</div>
+</div>
+<div class="card">
+<div class="card-title"><span class="ic">🫁</span>FastAPI 呼吸分析 <span class="tech">Python·FastAPI</span></div>
+<div class="tag-row"><span class="tag">EfficientPhys</span><span class="tag">ME-rPPG</span><span class="tag warn">1D-CNN</span><span class="tag">卡尔曼</span></div>
+<div class="proc"><b>输入：</b>ROI帧 → <b>输出：</b>呼吸率·相位·节律反馈</div>
+</div>
+<div class="card">
+<div class="card-title"><span class="ic">🤖</span>外部AI问答 <span class="tech">LLM API</span></div>
+<div class="tag-row"><span class="tag">上下文注入</span><span class="tag purple">提示词模板</span><span class="tag">流式返回</span></div>
+<div class="proc"><b>输入：</b>问题+上下文 → <b>输出：</b>回答文本·建议</div>
+</div>
+</div>
+</div>
+
+<!-- 协议 -->
+<div class="proto-arrow">↓</div>
+<div class="proto-bar">
+<span class="proto">JDBC / OSS SDK / 本地文件读取</span>
+</div>
+<div class="proto-arrow">↓</div>
+
+<!-- ===== 第四层：数据与资源层 ===== -->
+<div class="layer data">
+<div class="layer-head">
+<div class="layer-title">第四层 · 数据与资源层</div>
+</div>
+<div class="mod-grid g3">
+<div class="card">
+<div class="card-title"><span class="ic">🗃️</span>MySQL 8.4 结构化数据</div>
+<div class="tag-row"><span class="tag">users / user_settings</span><span class="tag">training_room_plan</span></div>
+<div class="tag-row"><span class="tag">training_room_session</span><span class="tag">training_record</span></div>
+<div class="tag-row"><span class="tag">community_post</span><span class="tag">community_comment</span></div>
+<div class="tag-row"><span class="tag">favorite / likes</span><span class="tag">video / recipe</span><span class="tag">checkin</span></div>
+</div>
+<div class="card">
+<div class="card-title"><span class="ic">☁️</span>阿里云 OSS 媒体资源</div>
+<div class="card-sub">课程视频与切图 · 社区图文与视频<br/>用户头像 · 训练录像 · 食疗插图</div>
+</div>
+<div class="card">
+<div class="card-title"><span class="ic">🧠</span><span style="color:#b45309;">模型与知识资源</span></div>
+<div class="tag-row"><span class="tag purple">姿态分类模型 (.pt)</span><span class="tag purple">呼吸相位模型 (.pt)</span></div>
+<div class="tag-row"><span class="tag">标准动作模板 (.npz)</span><span class="tag">教学时间轴 (.json)</span></div>
+<div class="tag-row"><span class="tag">知识资料与提示词</span><span class="tag">数据集文件</span></div>
+</div>
+</div>
+</div>
+
+
+<!-- 图例 -->
+<div class="legend">
+<span><i style="background:#eff6ff;border-color:#60a5fa;"></i>前端表现层</span>
+<span><i style="background:#ecfdf5;border-color:#34d399;"></i>业务服务层</span>
+<span><i style="background:#f5f3ff;border-color:#a78bfa;"></i>算法服务层</span>
+<span><i style="background:#fffbeb;border-color:#f59e0b;"></i>数据与资源层</span>
+<span><i style="background:#fef9c3;border-color:#fde68a;"></i>数据处理标注</span>
+<span><i style="background:#f0fdf4;border-color:#bbf7d0;"></i>模块内部流程</span>
+<span><i style="background:#f1f5f9;border-color:#e2e8f0;"></i>子模块分解</span>
+<span><i style="background:#ede9fe;border-color:#c4b5fd;"></i>核心模型/模板</span>
+</div>
+</body>
+</html>
